@@ -1,0 +1,288 @@
+﻿body, div, button, h1, img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: segoe ui, verdana, arial, sans-serif;
+    background-color: #2f343a;
+}
+
+
+#startgame {
+    margin: 0 auto;
+    background: -moz-linear-gradient(-45deg, rgba(1,31,67,1) 0%, rgba(16,39,66,1) 49%, rgba(26,43,63,1) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(1,31,67,1) 0%,rgba(16,39,66,1) 49%,rgba(26,43,63,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(1,31,67,1) 0%,rgba(16,39,66,1) 49%,rgba(26,43,63,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(1,31,67,1) 0%,rgba(16,39,66,1) 49%,rgba(26,43,63,1) 100%);
+    background: linear-gradient(135deg, rgba(1,31,67,1) 0%,rgba(16,39,66,1) 49%,rgba(26,43,63,1) 100%);
+    box-shadow: 0 0 4px 4px rgba(26,43,63,.7);
+    width: 925px;
+    height: 450px;
+}
+
+    #startgame img {
+        position: absolute;
+        display: block;
+        margin: 25px;
+    }
+
+    #startgame button {
+        width: 200px;
+        height: 100px;
+        display: block;
+        float: left;
+        margin-left: 25px;
+        margin-top: 175px;
+        font-size: 25px;
+        color: #000;
+    }
+
+        #startgame button#easy {
+            background: -moz-linear-gradient(-45deg, rgba(155,253,135,1) 0%, rgba(112,241,83,1) 40%, rgba(42,225,5,1) 100%);
+            background: -webkit-linear-gradient(-45deg, rgba(155,253,135,1) 0%,rgba(112,241,83,1) 40%,rgba(42,225,5,1) 100%);
+            background: -o-linear-gradient(-45deg, rgba(155,253,135,1) 0%,rgba(112,241,83,1) 40%,rgba(42,225,5,1) 100%);
+            background: -ms-linear-gradient(-45deg, rgba(155,253,135,1) 0%,rgba(112,241,83,1) 40%,rgba(42,225,5,1) 100%);
+            background: linear-gradient(135deg, rgba(155,253,135,1) 0%,rgba(112,241,83,1) 40%,rgba(42,225,5,1) 100%);
+        }
+
+            #startgame button#easy:hover {
+                box-shadow: 0 0 4px 4px rgba(155,253,135,.7);
+            }
+
+        #startgame button#medium {
+            background: -moz-linear-gradient(-45deg, rgba(135,224,253,1) 0%, rgba(83,203,241,1) 40%, rgba(5,171,224,1) 100%);
+            background: -webkit-linear-gradient(-45deg, rgba(135,224,253,1) 0%,rgba(83,203,241,1) 40%,rgba(5,171,224,1) 100%);
+            background: -o-linear-gradient(-45deg, rgba(135,224,253,1) 0%,rgba(83,203,241,1) 40%,rgba(5,171,224,1) 100%);
+            background: -ms-linear-gradient(-45deg, rgba(135,224,253,1) 0%,rgba(83,203,241,1) 40%,rgba(5,171,224,1) 100%);
+            background: linear-gradient(135deg, rgba(135,224,253,1) 0%,rgba(83,203,241,1) 40%,rgba(5,171,224,1) 100%);
+        }
+
+            #startgame button#medium:hover {
+                box-shadow: 0 0 4px 4px rgba(135,224,253,.7);
+            }
+
+        #startgame button#hard {
+            background: -moz-linear-gradient(-45deg, rgba(155,135,253,1) 0%, rgba(107,83,241,1) 40%, rgba(42,5,225,1) 100%);
+            background: -webkit-linear-gradient(-45deg, rgba(155,135,253,1) 0%,rgba(107,83,241,1) 40%,rgba(42,5,225,1) 100%);
+            background: -o-linear-gradient(-45deg, rgba(155,135,253,1) 0%,rgba(107,83,241,1) 40%,rgba(42,5,225,1) 100%);
+            background: -ms-linear-gradient(-45deg, rgba(155,135,253,1) 0%,rgba(107,83,241,1) 40%,rgba(42,5,225,1) 100%);
+            background: linear-gradient(135deg, rgba(155,135,253,1) 0%,rgba(107,83,241,1) 40%,rgba(42,5,225,1) 100%);
+        }
+
+            #startgame button#hard:hover {
+                box-shadow: 0 0 4px 4px rgba(107,83,241,.7);
+            }
+
+        #startgame button#custom {
+            background-color: #808080;
+        }
+
+            #startgame button#custom:hover {
+                /*TODO*/
+            }
+
+
+    #startgame h1 {
+        color: white;
+        padding: 15px;
+        position: absolute;
+    }
+
+
+#gamefield {
+    margin: 0 auto;
+    background-color: #2f343a;
+    border-radius: 3px;
+}
+
+    #gamefield div {
+        width: 27px;
+        height: 27px;
+        line-height: 27px;
+        border: 1px solid #1c3c59;
+        margin-left: 1px;
+        margin-top: 1px;
+        text-align: center;
+        font-size: 22px;
+        float: left;
+        border-radius: 3px;
+        background: -moz-linear-gradient(-45deg, rgba(198,203,236,1) 0%, rgba(134,152,236,1) 57%, rgba(99,124,235,1) 82%, rgba(169,183,249,1) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(198,203,236,1) 0%,rgba(134,152,236,1) 57%,rgba(99,124,235,1) 82%,rgba(169,183,249,1) 100%);
+        background: -o-linear-gradient(-45deg, rgba(198,203,236,1) 0%,rgba(134,152,236,1) 57%,rgba(99,124,235,1) 82%,rgba(169,183,249,1) 100%);
+        background: -ms-linear-gradient(-45deg, rgba(198,203,236,1) 0%,rgba(134,152,236,1) 57%,rgba(99,124,235,1) 82%,rgba(169,183,249,1) 100%);
+        background: linear-gradient(135deg, rgba(198,203,236,1) 0%,rgba(134,152,236,1) 57%,rgba(99,124,235,1) 82%,rgba(169,183,249,1) 100%);
+    }
+
+        #gamefield div.clicked {
+            background: none;
+            animation: click .15s forwards;
+            -moz-animation: click 0.15s forwards;
+            -webkit-animation: click .15s forwards;
+            -o-animation: click .15s forwards;
+        }
+
+        #gamefield div.question {
+            background-image: url('images/question.png');
+            background-size: contain;
+        }
+
+        #gamefield div.flag {
+            background-image: url('images/flag.png');
+            background-size: contain;
+        }
+
+        #gamefield div.bomb {
+            animation: bomb .15s;
+            -moz-animation: bomb 0.05s;
+            -webkit-animation: bomb .15s;
+            -o-animation: bomb .15s;
+            background-image: url('images/bomb.png');
+            background-size: contain;
+        }
+
+
+#gameover {
+    position: relative;
+    margin: 0 auto;
+    width: 150px;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    background-color: rgba(135, 0, 255, 0.74);
+    display: none;
+}
+
+    #gameover #playagain {
+        display: block;
+        margin: 0 auto;
+        padding: 4px;
+        color: white;
+        background: -moz-linear-gradient(top, rgba(31,110,183,1) 0%, rgba(24,85,138,1) 24%, rgba(5,56,101,1) 50%, rgba(21,75,123,1) 79%, rgba(26,91,148,1) 100%);
+        background: -webkit-linear-gradient(top, rgba(31,110,183,1) 0%,rgba(24,85,138,1) 24%,rgba(5,56,101,1) 50%,rgba(21,75,123,1) 79%,rgba(26,91,148,1) 100%);
+        background: -o-linear-gradient(top, rgba(31,110,183,1) 0%,rgba(24,85,138,1) 24%,rgba(5,56,101,1) 50%,rgba(21,75,123,1) 79%,rgba(26,91,148,1) 100%);
+        background: -ms-linear-gradient(top, rgba(31,110,183,1) 0%,rgba(24,85,138,1) 24%,rgba(5,56,101,1) 50%,rgba(21,75,123,1) 79%,rgba(26,91,148,1) 100%);
+        background: linear-gradient(to bottom, rgba(31,110,183,1) 0%,rgba(24,85,138,1) 24%,rgba(5,56,101,1) 50%,rgba(21,75,123,1) 79%,rgba(26,91,148,1) 100%);
+    }
+
+    #gameover #gameEnd {
+        text-align: center;
+    }
+
+
+@keyframes click {
+    0% {
+        background: rgba(99,124,235,1);
+    }
+
+    20% {
+        background: rgba(115,137,237,1);
+    }
+
+    40% {
+        background: rgba(131,151,239,1);
+    }
+
+    60% {
+        background: rgba(145,163,241,1);
+    }
+
+    80% {
+        background: rgba(161,176,243,1);
+    }
+
+    100% {
+        background: rgba(197,217,247,1);
+    }
+}
+
+
+@-webkit-keyframes click {
+    0% {
+        background: rgba(99,124,235,1);
+    }
+
+    20% {
+        background: rgba(115,137,237,1);
+    }
+
+    40% {
+        background: rgba(131,151,239,1);
+    }
+
+    60% {
+        background: rgba(145,163,241,1);
+    }
+
+    80% {
+        background: rgba(161,176,243,1);
+    }
+
+    100% {
+        background: rgba(197,217,247,1);
+    }
+}
+
+
+@-moz-keyframes click {
+    0% {
+        background: rgba(99,124,235,1);
+    }
+
+    20% {
+        background: rgba(115,137,237,1);
+    }
+
+    40% {
+        background: rgba(131,151,239,1);
+    }
+
+    60% {
+        background: rgba(145,163,241,1);
+    }
+
+    80% {
+        background: rgba(161,176,243,1);
+    }
+
+    100% {
+        background: rgba(197,217,247,1);
+    }
+}
+
+
+@keyframes bomb {
+    0% {
+        background: rgba(99,124,235,1);
+    }
+
+
+    100% {
+        background: rgb(255, 0, 0);
+    }
+}
+
+
+@-webkit-keyframes bomb {
+    0% {
+        background: rgba(99,124,235,1);
+    }
+
+
+    100% {
+        background: rgb(255, 0, 0);
+    }
+}
+
+
+@-moz-keyframes bomb {
+    0% {
+        background: rgba(99,124,235,1);
+    }
+
+
+    100% {
+        background: rgb(255, 0, 0);
+    }
+}
