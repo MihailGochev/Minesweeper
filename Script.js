@@ -2,7 +2,6 @@
     var gameFieldWidth;
     var gameFieldHeight;
     var gameFieldContainer;
-    var gameFieldContainerWidth;
     var gameFieldContainerHeight;
     var bombCount;
     var innerFieldsClicked = 0;
@@ -10,25 +9,40 @@
     var firstClick;
     var gameOver;
 
-    var startGame = function () {
+    function gameEnded(message) {
+        document.getElementById("gameEnd").innerHTML = message;
+        document.getElementById("gameover").style.display = "block";
+        gameOver = true;
+    }
+
+    function updateGameInfo() {
+        document.getElementById("mines-count-info").innerHTML = bombCount;
+        var flagCount = document.getElementsByClassName("flag").length - 1;
+        document.getElementById("flags-count-info").innerHTML = flagCount;
+    }
+
+    function startGame() {
         gameOver = false;
         firstClick = true;
-        gameFieldContainerWidth = innerFieldSize * gameFieldWidth + "px";
         gameFieldContainerHeight = innerFieldSize * gameFieldHeight + "px";
+        var game = document.getElementById("game");
+        game.style.display = "block";
         gameFieldContainer = document.getElementById("gamefield");
-        gameFieldContainer.style.width = gameFieldContainerWidth;
-        gameFieldContainer.style.height = gameFieldContainerHeight;
+        gameFieldContainer.style.width = (gameFieldWidth * 2.81) + "em";
 
         //Generating the game field child elements
         gameField = new Array(gameFieldWidth);
-        var gameFieldContent = "";
+        var gameFieldContent = "<table class='field-table'>";
         for (var row = 0; row < gameFieldHeight; row++) {
             gameField[row] = new Array(gameFieldWidth);
+            gameFieldContent += "<tr class='field-row'>";
             for (var col = 0; col < gameFieldWidth; col++) {
                 gameField[row][col] = 0;
-                gameFieldContent += "<div id='" + row + "_" + col + "'></div>";
+                gameFieldContent += "<td id='" + row + "_" + col + "' class='field-cell'></td>";
             }
+            gameFieldContent += "</tr>"
         }
+        gameFieldContent += "</table>"
         gameFieldContainer.innerHTML = gameFieldContent;
 
         //Placing the bombs on random coordinates
@@ -52,14 +66,17 @@
         }
 
         //Assigning click events
-        var innerBoxes = gameFieldContainer.childNodes;
+        var innerBoxes = gameFieldContainer.getElementsByClassName('field-cell');
         for (row = 0; row < innerBoxes.length; row++) {
-            innerBoxes[row].onclick = rightClickEvent;
-            innerBoxes[row].oncontextmenu = leftClickEvent;
+            innerBoxes[row].onclick = leftClickEvent;
+            innerBoxes[row].ondblclick = doubleClickEvent;
+            innerBoxes[row].oncontextmenu = rightClickEvent;
         }
+
+        updateGameInfo();
     }
 
-    var rightClickEvent = function () {
+    function leftClickEvent() {
         if (gameOver) {
             return;
         }
@@ -82,31 +99,26 @@
         }
         firstClick = false;
 
-
         if (fieldValue == 10) { //Bomb: losing the game
             field.className = "bomb";
-            document.getElementById("gameEnd").innerHTML = "You have lost!";
-            document.getElementById("gameover").style.display = "block";
-            gameOver = true;
+            gameEnded("You have lost!");
             detonateBombs();
-            document.getElementById("gameover").style.top = ((parseInt(gameFieldContainerHeight) + 50) / 2) * -1 + "px";
         } else if (fieldValue > 0) { //the field is empty and has a bomb around it
             field.className = "clicked";
             field.innerHTML = fieldValue;
             field.style.color = setTextColor(fieldValue);
             innerFieldsClicked++;
             if (innerFieldsClicked == (gameFieldWidth * gameFieldHeight - bombCount)) { //all the empty fields are oppened: winning the game
-                document.getElementById("gameEnd").innerHTML = "You won!";
-                document.getElementById("gameover").style.display = "block";
-                document.getElementById("gameover").style.top = ((parseInt(gameFieldContainerHeight) + 50) / 2) * -1 + "px";
-                gameOver = true;
+                gameEnded("You won!");
             }
         } else { //the field is empty and has no bombs around it
             openEmptyNeighbours(currentRow, currentCol);
         }
+
+        updateGameInfo();
     }
 
-    var leftClickEvent = function () {
+    function rightClickEvent() {
         if (gameOver) {
             return;
         }
@@ -115,16 +127,66 @@
 
         if (field.className == "flag") {
             field.className = "question";
+            updateGameInfo();
         } else if (field.className == "question") {
-            field.className = "";
+            field.className = "field-cell";
+            updateGameInfo();
         } else if (field.className != "clicked" && field.className != "bomb") {
             field.className = "flag";
+            updateGameInfo();
         }
 
         return false;
     }
 
-    var firstClickSaver = function (row, col) {
+    function doubleClickEvent() {
+        var field = this;
+        if (gameOver && field.className != "clicked") {
+            return;
+        }
+
+        var coordinates = field.id.split("_");
+        var currentRow = parseInt(coordinates[0]);
+        var currentCol = parseInt(coordinates[1]);
+        var fieldValue = gameField[currentRow][currentCol];
+
+        var nonMarkedCount = 0;
+        var openedCount = 0;
+        var cellsCount = 0;
+        for (row = -1; row < 2; row++) {
+            for (col = -1; col < 2; col++) {
+                var cell = document.getElementById((currentRow + row) + "_" + (currentCol + col));
+                if (cell)
+                {
+                    cellsCount++;
+                    if (cell.className == "clicked")
+                    {
+                        openedCount++;
+                    } else if (cell.className == "field-cell")
+                    {
+                        nonMarkedCount++;
+                    }
+                }
+            }
+        }
+
+        //if (cellsCount - openedCount - nonMarkedCount == fieldValue) {
+        if (openedCount + nonMarkedCount + fieldValue <= cellsCount) {
+            for (row = -1; row < 2; row++) {
+                for (col = -1; col < 2; col++) {
+                    var cell = document.getElementById((currentRow + row) + "_" + (currentCol + col));
+                    if (cell)
+                    {
+                        cell.onclick();
+                    }
+                }
+            }
+        }
+
+        updateGameInfo();
+    }
+
+    function firstClickSaver(row, col) {
         var savedRow = row;
         var savedCol = col;
         gameField[row][col] = checkNeighbours(row, col);
@@ -148,7 +210,7 @@
         }
     }
 
-    var checkNeighbours = function (row, col) {
+    function checkNeighbours(row, col) {
         //counts all the bombs around the field at the given coordinates
         var result = 0;
         result += isBomb(row, col + 1);
@@ -162,7 +224,7 @@
         return result;
     }
 
-    var openEmptyNeighbours = function (row, col) {
+    function openEmptyNeighbours(row, col) {
         if (row < 0 || col < 0 || col >= gameFieldWidth || row >= gameFieldHeight) { //invalid coordinates: returning
             return;
         } else if (gameField[row][col] == 10) {//the field is a bomb: returning
@@ -175,10 +237,7 @@
             field.className = "clicked";
             innerFieldsClicked++;
             if (innerFieldsClicked == (gameFieldWidth * gameFieldHeight - bombCount)) { //all the empty fields are oppened: winning the game
-                document.getElementById("gameEnd").innerHTML = "You won!";
-                document.getElementById("gameover").style.display = "block";
-                document.getElementById("gameover").style.top = ((parseInt(gameFieldContainerHeight) + 50) / 2) * -1 + "px";
-                gameOver = true;
+                gameEnded("You won!");
             }
 
             if (gameField[row][col] > 0) { //the field has bombs around it: oppening it and giving it proper color
@@ -198,7 +257,7 @@
         }
     }
 
-    var isBomb = function (row, col) { //checking if the field at the given coordinates is a bomb
+    function isBomb(row, col) { //checking if the field at the given coordinates is a bomb
         if (row >= 0 && col >= 0 && col < gameFieldWidth && row < gameFieldHeight && gameField[row][col] == 10) {
             return 1;
         } else {
@@ -206,7 +265,7 @@
         }
     }
 
-    var setTextColor = function (value) { //setting text color for the oppened blocks
+    function setTextColor(value) { //setting text color for the oppened blocks
         switch (value) {
             case 1:
                 return "#189400";
@@ -221,7 +280,7 @@
         }
     }
 
-    var detonateBombs = function () { //detonating all bombs at the end of the game
+    function detonateBombs() { //detonating all bombs at the end of the game
         for (row = 0; row < gameFieldHeight; row++) {
             for (col = 0; col < gameFieldWidth; col++) {
                 if (gameField[row][col] == 10) {
@@ -231,10 +290,11 @@
         }
     }
 
-    var restartGame = function () {
+    function restartGame() {
         document.getElementById("startgame").style.display = "block";
-        document.getElementById("gamefield").innerHTML = "";
+        document.getElementById("game").style.display = "none";
         document.getElementById("gameover").style.display = "none";
+        document.getElementById("custom-game-menu").style.display = "none";
         minesweeper();
     }
 
@@ -268,7 +328,16 @@
     }
 
     document.getElementById("custom").onclick = function () {
-        //TODO
+        document.getElementById("startgame").style.display = "none";
+        document.getElementById("custom-game-menu").style.display = "grid";
+    }
+
+    document.getElementById("start-custom-game").onclick = function() {
+        document.getElementById("custom-game-menu").style.display = "none";
+        gameFieldWidth = document.getElementById("field-width").value;
+        gameFieldHeight = document.getElementById("field-height").value;
+        bombCount = document.getElementById("mines-count").value;
+        startGame();
     }
 }
 

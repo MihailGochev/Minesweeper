@@ -6,17 +6,52 @@
     <link rel="stylesheet" href="Styles.css" type="text/css" />
 </head>
 <body>
-    <div id="startgame">
-        <img src="images/logo.png" alt="Minesweeper" />
-        <button id="easy">Easy</button>
-        <button id="medium">Medium</button>
-        <button id="hard">Hard</button>
-        <button id="custom">Custom (comming soon)</button>
-    </div>
-    <div id="gamefield"></div>
-    <div id="gameover">
-        <div id="gameEnd"></div>
-        <button id="playagain">Play Again</button>
+    <div class="container">
+        <div id="startgame" class="game-menu">
+            <!--<img src="images/logo.png" alt="Minesweeper" />-->
+            <h1>Minesweeper</h1>
+            <div class="game-menu">
+                <button id="easy">Easy</button>
+                <button id="medium">Medium</button>
+                <button id="hard">Hard</button>
+                <button id="custom">Custom</button>
+            </div>
+        </div>
+        <div id="custom-game-menu" class="game-menu">
+            <h1>Custom game</h1>
+            <div>
+                <label for="field-width">Field width</label>
+                <input id="field-width" type="number" value="20" min="1" />
+            </div>
+            <div>
+                <label for="field-height">Field height</label>
+                <input id="field-height" type="number" value="15" min="1" />
+            </div>
+            <div>
+                <label for="field-count">Field count</label>
+                <input id="mines-count" type="number" value="30" min="1" />
+            </div>
+            <div>
+                <button id="start-custom-game">Start</button>
+            </div>
+        </div>
+        <div id="game">
+            <div class="game-menu game-info">
+                <div class="info-block">
+                    <div class="info-type bomb"></div>
+                    <span id="mines-count-info" class="info-value">-1</span>
+                </div>
+                <div class="info-block">
+                    <div class="info-type flag"></div>
+                    <span id="flags-count-info" class="info-value">-1</span>
+                </div>
+            </div>
+            <div id="gamefield"></div>
+            <div id="gameover">
+                <span id="gameEnd"></span>
+                <button id="playagain">Play Again</button>
+            </div>
+        </div>
     </div>
     <script src="Script.js" type="text/javascript"></script>
 </body>
