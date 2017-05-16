@@ -73,6 +73,7 @@ body {
 }
 
 .container label {
+    text-align: right;
     color: white;
     display: inline-block;
     width: 7em;
@@ -150,21 +151,21 @@ button#start-custom-game:hover {
 #gamefield {
     margin: auto;
     position: relative;
-    top: 3em;
+    top: 3rem;
 }
 
 tr {
-    border-radius: 0.1em;
+    border-radius: 0.1rem;
     border: 1px solid #1c3c59;
 }
 
 td {
-    width: 2em;
-    height: 2em;
+    width: 2.3rem;
+    height: 2.3rem;
     text-align: center;
-    font-size: 1.2rem;
-    outline: 0.1em solid #1c3c59;
-    border-radius: 0.2em;
+    font-size: 1.7rem;
+    outline: 0.1rem solid #1c3c59;
+    border-radius: 0.2rem;
     background: -moz-linear-gradient(-45deg, rgba(198,203,236,1) 0%, rgba(134,152,236,1) 57%, rgba(99,124,235,1) 82%, rgba(169,183,249,1) 100%);
     background: -webkit-linear-gradient(-45deg, rgba(198,203,236,1) 0%,rgba(134,152,236,1) 57%,rgba(99,124,235,1) 82%,rgba(169,183,249,1) 100%);
     background: -o-linear-gradient(-45deg, rgba(198,203,236,1) 0%,rgba(134,152,236,1) 57%,rgba(99,124,235,1) 82%,rgba(169,183,249,1) 100%);
@@ -192,12 +193,12 @@ table:hover {
 }
 
 #gamefield .question {
-    background-image: url('images/question.svg');
+    background-image: url('images/question.png');
     background-size: contain;
 }
 
 #game .flag {
-    background-image: url('images/flag.svg');
+    background-image: url('images/flag.png');
     background-size: contain;
 }
 
@@ -206,7 +207,7 @@ table:hover {
     -moz-animation: bomb 0.05s;
     -webkit-animation: bomb .15s;
     -o-animation: bomb .15s;
-    background-image: url('images/bomb.svg');
+    background-image: url('images/bomb.png');
     background-size: contain;
 }
 
@@ -215,10 +216,10 @@ table:hover {
     left: 50%;
     top: 30%;
     transform: translate(-50%, -50%);
-    width: 20rem;
-    height: 11rem;
+    width: 10rem;
+    height: 4.5rem;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
     background-color: rgba(135, 0, 255, 0.74);
     display: none;
@@ -228,7 +229,10 @@ table:hover {
     display: block;
     margin: auto;
     float: none;
-    border-radius: 0.2em;
+    font-size: 1.3rem;
+    width: 8.8rem;
+    height: 2.3rem;
+    border-radius: 0.2rem;
     color: white;
     background: -moz-linear-gradient(top, rgba(31,110,183,1) 0%, rgba(24,85,138,1) 24%, rgba(5,56,101,1) 50%, rgba(21,75,123,1) 79%, rgba(26,91,148,1) 100%);
     background: -webkit-linear-gradient(top, rgba(31,110,183,1) 0%,rgba(24,85,138,1) 24%,rgba(5,56,101,1) 50%,rgba(21,75,123,1) 79%,rgba(26,91,148,1) 100%);
@@ -242,7 +246,7 @@ table:hover {
     display: block;
 }
 
-/* * { outline : 2px solid chocolate; } */
+ /** { outline : 2px solid chocolate; } */
 
 @keyframes click {
     0% {

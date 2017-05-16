@@ -28,7 +28,7 @@
         var game = document.getElementById("game");
         game.style.display = "block";
         gameFieldContainer = document.getElementById("gamefield");
-        gameFieldContainer.style.width = (gameFieldWidth * 2.81) + "em";
+        gameFieldContainer.style.width = (gameFieldWidth * 2.5) + "rem";
 
         //Generating the game field child elements
         gameField = new Array(gameFieldWidth);
@@ -329,7 +329,7 @@
 
     document.getElementById("custom").onclick = function () {
         document.getElementById("startgame").style.display = "none";
-        document.getElementById("custom-game-menu").style.display = "grid";
+        document.getElementById("custom-game-menu").style.display = "block";
     }
 
     document.getElementById("start-custom-game").onclick = function() {
